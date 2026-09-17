@@ -1,0 +1,12 @@
+{
+  "name": "final-demo-project",
+  "module": "index.ts",
+  "peerDependencies": {
+    "typescript": "^5"
+  },
+  "private": true,
+  "scripts": {
+    "server": "cd server && bun run dev"
+  },
+  "type": "module"
+}

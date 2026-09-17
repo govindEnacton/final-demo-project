@@ -1,0 +1,1 @@
+ALTER TABLE "users" ADD COLUMN "fun" varchar(255);
