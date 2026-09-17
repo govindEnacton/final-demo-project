@@ -18,7 +18,7 @@ app.get("/todos", async (c) => {
   await new Promise((resolve) => {
     setTimeout(() => {
       console.log("3 second break completed");
-      resolve();
+      resolve('nothin');
     }, 3000);
   });
 

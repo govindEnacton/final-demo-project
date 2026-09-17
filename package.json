@@ -6,6 +6,7 @@
   },
   "private": true,
   "scripts": {
+    "client": "cd client && bun run dev",
     "server": "cd server && bun run dev"
   },
   "type": "module"
