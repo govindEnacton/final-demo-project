@@ -19,7 +19,7 @@ app.get("/todos", async (c) => {
     setTimeout(() => {
       console.log("3 second break completed");
       resolve('nothin');
-    }, 3000);
+    }, 0);  
   });
 
   const rows: Todo[] = await db.select().from(todos).orderBy(todos.createdAt);
