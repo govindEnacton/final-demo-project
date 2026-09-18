@@ -1,31 +1,33 @@
 "use client";
 
 import { memo } from "react";
-import { useToggleTodo, useDeleteTodo } from "@/hooks/use-todos";
+import { useSetTodoStatus, useDeleteTodo } from "@/hooks/use-todos";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Button } from "@/components/ui/button";
 import type { Todo } from "@/lib/types";
 
 export const TodoItem = memo(function TodoItem({ todo }: { todo: Todo }) {
-  const toggleTodo = useToggleTodo();
+  const setStatus = useSetTodoStatus();
   const deleteTodo = useDeleteTodo();
+
+  const isDone = todo.status === "done";
 
   return (
     <li className="flex items-center gap-3 rounded-md border p-3">
       <Checkbox
-        checked={todo.completed}
+        checked={isDone}
         onCheckedChange={(checked) =>
-          toggleTodo.mutate({ id: todo.id, completed: checked === true })
+          setStatus.mutate({ id: todo.id, status: checked ? "done" : "todo" })
         }
-        disabled={toggleTodo.isPending}
+        disabled={setStatus.isPending}
       />
-      <span className={todo.completed ? "line-through text-muted-foreground" : ""}>
+      <span className={isDone ? "line-through text-muted-foreground" : ""}>
         {todo.title}
       </span>
+      <span className="ml-auto text-xs text-muted-foreground">{todo.status}</span>
       <Button
         variant="ghost"
         size="sm"
-        className="ml-auto text-muted-foreground"
         onClick={() => deleteTodo.mutate(todo.id)}
         disabled={deleteTodo.isPending}
       >

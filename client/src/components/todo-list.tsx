@@ -13,7 +13,11 @@ export function TodoList() {
   if (!todos?.length) return <p>No todos yet.</p>;
 
   const visible = todos.filter((t) =>
-    filter === "all" ? true : filter === "open" ? !t.completed : t.completed
+    filter === "all"
+      ? true
+      : filter === "open"
+        ? t.status !== "done"
+        : t.status === "done"
   );
 
   return (
